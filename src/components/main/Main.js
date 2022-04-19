@@ -7,6 +7,7 @@ const Main = () => {
   const dataCTX = useContext(DataContext);
 
   const addPersonalDataHandler = (data) => {
+    console.log(data);
     dataCTX.addPersonalData(data);
   };
 
@@ -22,7 +23,7 @@ const Main = () => {
         <PersonalForm getPersonalData={addPersonalDataHandler} />
         <button
           onClick={() => {
-            console.log(dataCTX.personalInfo);
+            console.log(dataCTX);
           }}
         >
           see context

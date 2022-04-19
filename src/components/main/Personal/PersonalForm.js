@@ -14,7 +14,6 @@ const initialState = {
 
 const inputReducer = (state, action) => {
   if (action.type === "FIRSTNAME INPUT") {
-    action.function();
     return { ...state, firstName: action.value };
   }
   if (action.type === "LASTNAME INPUT") {
@@ -35,7 +34,7 @@ const inputReducer = (state, action) => {
   if (action.type === "DESCRIPTION INPUT") {
     return { ...state, description: action.value };
   }
-  console.log("action no existe");
+
   return state;
 };
 
@@ -47,39 +46,19 @@ const PersonalForm = ({ getPersonalData }) => {
   );
 
   const firstNameHandler = (e) => {
-    dispatchInputs({
-      type: "FIRSTNAME INPUT",
-      value: e.target.value,
-      function: getPersonalData,
-    });
+    dispatchInputs({ type: "FIRSTNAME INPUT", value: e.target.value });
   };
   const lastNameHandler = (e) => {
-    dispatchInputs({
-      type: "LASTNAME INPUT",
-      value: e.target.value,
-      function: getPersonalData,
-    });
+    dispatchInputs({ type: "LASTNAME INPUT", value: e.target.value });
   };
   const professionHandler = (e) => {
-    dispatchInputs({
-      type: "PROFESSION INPUT",
-      value: e.target.value,
-      function: getPersonalData,
-    });
+    dispatchInputs({ type: "PROFESSION INPUT", value: e.target.value });
   };
   const addressHandler = (e) => {
-    dispatchInputs({
-      type: "ADDRESS INPUT",
-      value: e.target.value,
-      function: getPersonalData,
-    });
+    dispatchInputs({ type: "ADDRESS INPUT", value: e.target.value });
   };
   const phoneNumberHandler = (e) => {
-    dispatchInputs({
-      type: "PHONENUMBER INPUT",
-      value: e.target.value,
-      function: getPersonalData,
-    });
+    dispatchInputs({ type: "PHONENUMBER INPUT", value: e.target.value });
   };
   const emailHandler = (e) => {
     dispatchInputs({ type: "EMAIL INPUT", value: e.target.value });
