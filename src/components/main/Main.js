@@ -6,11 +6,6 @@ import DataContext from "../../store/data-context";
 const Main = () => {
   const dataCTX = useContext(DataContext);
 
-  const addPersonalDataHandler = (data) => {
-    console.log(data);
-    dataCTX.addPersonalData(data);
-  };
-
   return (
     <>
       <Container
@@ -20,7 +15,7 @@ const Main = () => {
           padding: "50px",
         }}
       >
-        <PersonalForm getPersonalData={addPersonalDataHandler} />
+        <PersonalForm />
         <button
           onClick={() => {
             console.log(dataCTX);

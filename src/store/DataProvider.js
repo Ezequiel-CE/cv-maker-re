@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useCallback } from "react";
 import DataContext from "./data-context";
 
 const initialDataState = {
@@ -19,12 +19,18 @@ const DataProvider = ({ children }) => {
     initialDataState
   );
 
-  const addPersonalDataHandler = (data) => {
-    dispatchDataAction({ type: "ADD PERSONAL DATA", value: data });
-  };
+  //useCallback recuerda la funcion para evitar el renderizado del componente que la uitilize
+  const addPersonalDataHandler = useCallback(
+    (data) => {
+      console.log(data);
+
+      dispatchDataAction({ type: "ADD PERSONAL DATA", value: data });
+    },
+    [dispatchDataAction]
+  );
 
   const dataContext = {
-    personalInfo: dataState.personal,
+    personalInfo: dataState.personalInfo,
     educationInfo: [],
     workInfo: [],
     addPersonalData: addPersonalDataHandler,
