@@ -50,8 +50,6 @@ const PersonalForm = () => {
 
   useEffect(() => {
     addPersonalData(personalState);
-
-    console.log("renderiza");
   }, [personalState, addPersonalData]);
 
   const firstNameHandler = (e) => {

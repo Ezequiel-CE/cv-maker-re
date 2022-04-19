@@ -5,6 +5,9 @@ const DataContext = React.createContext({
   educationInfo: [],
   workInfo: [],
   addPersonalData: (data) => {},
+  deleteEducationForm: () => {},
+  addNewEducationData: () => {},
+  updateEducationData: () => {},
   removeItems: (id) => {},
   clearCart: () => {},
 });
