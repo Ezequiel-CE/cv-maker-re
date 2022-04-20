@@ -1,12 +1,12 @@
-import { useReducer } from "react";
+// import { useReducer } from "react";
 
-const useForm = (inputNames) => {
-  //   const [formState, dispatchFormAction] = useReducer(
-  //     inputReducer,
-  //     initialState
-  //   );
+// const useForm = (inputNames) => {
+//   //   const [formState, dispatchFormAction] = useReducer(
+//   //     inputReducer,
+//   //     initialState
+//   //   );
 
-  return {};
-};
+//   return {};
+// };
 
-export default useForm;
+// export default useForm;

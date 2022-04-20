@@ -8,7 +8,7 @@ const Navbar = () => {
       <Typography
         variant="h1"
         align="center"
-        sx={{ padding: "20px 0 20px 0", fontWeight: "400" }}
+        sx={{ padding: "20px 0 20px 0", fontWeight: "400", fontSize: "40px" }}
       >
         CV Maker
       </Typography>

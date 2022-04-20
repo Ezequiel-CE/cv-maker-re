@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import Container from "@mui/material/Container";
-import PersonalForm from "./Personal/PersonalForm";
-import DataContext from "../../store/data-context";
-import Education from "./Education/Education";
+import PersonalForm from "../main/Personal/PersonalForm";
+import Education from "../main/Education/Education";
+import Work from "../main/Work/Work";
 
 const Main = () => {
   return (
@@ -18,6 +18,7 @@ const Main = () => {
       >
         <PersonalForm />
         <Education />
+        <Work />
       </Container>
     </>
   );

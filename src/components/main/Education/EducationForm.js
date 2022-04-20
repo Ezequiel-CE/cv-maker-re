@@ -38,16 +38,17 @@ const educationReducer = (state, action) => {
 };
 
 const EducationForm = ({ data }) => {
-  const { deleteEducationForm, updateEducationData } = useContext(DataContext);
-
   const [educationState, dispatchEducationAction] = useReducer(
     educationReducer,
     initialState
   );
+  const { deleteEducationData, updateEducationData } = useContext(DataContext);
+
+  const { id } = data;
 
   useEffect(() => {
-    updateEducationData(data.id, educationState);
-  }, [educationState, updateEducationData, data.id]);
+    updateEducationData(id, educationState);
+  }, [educationState, updateEducationData, id]);
 
   const universityNameHandler = (e) => {
     dispatchEducationAction({
@@ -145,7 +146,7 @@ const EducationForm = ({ data }) => {
         <Button
           variant="outlined"
           startIcon={<DeleteIcon />}
-          onClick={() => deleteEducationForm(data.id)}
+          onClick={() => deleteEducationData(data.id)}
         >
           Delete
         </Button>

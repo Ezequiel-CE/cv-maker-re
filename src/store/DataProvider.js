@@ -15,14 +15,23 @@ const initialDataState = {
       id: uniqid(),
     },
   ],
-  workInfo: [],
+  workInfo: [
+    {
+      position: "",
+      company: "",
+      city: "",
+      from: "",
+      to: "",
+      id: uniqid(),
+    },
+  ],
 };
 
 const dataReducer = (state, action) => {
   if (action.type === "ADD PERSONAL DATA") {
     return { ...state, personalInfo: action.value };
   }
-
+  //EDUCATION
   if (action.type === "ADD NEW EDUCATION DATA") {
     const newEducationInfo = [...state.educationInfo, action.value];
     return { ...state, educationInfo: newEducationInfo };
@@ -45,6 +54,30 @@ const dataReducer = (state, action) => {
     return { ...state, educationInfo: newEducationInfo };
   }
 
+  //WORK
+
+  if (action.type === "ADD NEW WORK DATA") {
+    const newWork = [...state.workInfo, action.value];
+    return { ...state, workInfo: newWork };
+  }
+
+  if (action.type === "DELETE WORK ITEM") {
+    const newWorkState = state.workInfo.filter(
+      (form) => form.id !== action.value
+    );
+
+    return { ...state, workInfo: newWorkState };
+  }
+
+  if (action.type === "UPDATE WORK DATA") {
+    const formIndex = state.workInfo.findIndex(
+      (dataWork) => dataWork.id === action.value.id
+    );
+    const newWorkInfo = [...state.workInfo];
+    newWorkInfo[formIndex] = action.value;
+    return { ...state, workInfo: newWorkInfo };
+  }
+
   return state;
 };
 
@@ -56,6 +89,7 @@ const DataProvider = ({ children }) => {
 
   //FUNCIONES
 
+  //PERSONAL
   //useCallback recuerda la funcion para evitar el renderizado del componente que la utilize
   const addPersonalDataHandler = useCallback(
     (data) => {
@@ -64,6 +98,7 @@ const DataProvider = ({ children }) => {
     [dispatchDataAction]
   );
 
+  //EDUCATION
   const addNewEducationDataHandler = () => {
     dispatchDataAction({
       type: "ADD NEW EDUCATION DATA",
@@ -85,10 +120,41 @@ const DataProvider = ({ children }) => {
 
   const updateEducationHandler = useCallback(
     (id, data) => {
-      const newDataedu = { ...data, id: id };
+      const updateDataedu = { ...data, id: id };
       dispatchDataAction({
         type: "UPDATE EDUCATION DATA",
-        value: newDataedu,
+        value: updateDataedu,
+      });
+    },
+    [dispatchDataAction]
+  );
+
+  //WORK
+
+  const addNewWorkDataHandler = () => {
+    dispatchDataAction({
+      type: "ADD NEW WORK DATA",
+      value: {
+        position: "",
+        company: "",
+        city: "",
+        from: "",
+        to: "",
+        id: uniqid(),
+      },
+    });
+  };
+
+  const deleteWorkDataHandler = (id) => {
+    dispatchDataAction({ type: "DELETE WORK ITEM", value: id });
+  };
+
+  const updateWorkHandler = useCallback(
+    (id, data) => {
+      const updatedWorkedu = { ...data, id: id };
+      dispatchDataAction({
+        type: "UPDATE WORK DATA",
+        value: updatedWorkedu,
       });
     },
     [dispatchDataAction]
@@ -97,13 +163,14 @@ const DataProvider = ({ children }) => {
   const dataContext = {
     personalInfo: dataState.personalInfo,
     educationInfo: dataState.educationInfo,
-    workInfo: [],
+    workInfo: dataState.workInfo,
     addPersonalData: addPersonalDataHandler,
     addNewEducationData: addNewEducationDataHandler,
-    deleteEducationForm: deleteEducationHandler,
+    deleteEducationData: deleteEducationHandler,
     updateEducationData: updateEducationHandler,
-    removeItems: (id) => {},
-    clearCart: () => {},
+    addNewWorkData: addNewWorkDataHandler,
+    deleteWorkData: deleteWorkDataHandler,
+    updateWorkData: updateWorkHandler,
   };
   return (
     <DataContext.Provider value={dataContext}>{children}</DataContext.Provider>

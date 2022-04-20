@@ -1,34 +1,34 @@
 import React, { useContext } from "react";
-import EducationForm from "./EducationForm";
 import Typography from "@mui/material/Typography";
 import DataContext from "../../../store/data-context";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
+import WorkForm from "./WorkForm";
 
-const Education = () => {
-  const { educationInfo, addNewEducationData } = useContext(DataContext);
+const Work = () => {
+  const { workInfo, addNewWorkData } = useContext(DataContext);
 
   return (
     <>
-      <Typography variant="h3" sx={{ padding: "50px 0 20px 0" }}>
-        Education Information
+      <Typography variant="h3" sx={{ padding: "0 0 20px 0" }}>
+        Work Information
       </Typography>
-      {educationInfo.map((eduData) => (
-        <EducationForm key={eduData.id} data={eduData} />
+      {workInfo.map((workData) => (
+        <WorkForm key={workData.id} data={workData} />
       ))}
       <Box textAlign="center" sx={{ padding: "10px 0 20px 0" }}>
         <Button
           variant="contained"
           sx={{ margin: "20px 0 20px 0" }}
-          onClick={addNewEducationData}
+          onClick={addNewWorkData}
           startIcon={<AddIcon />}
         >
-          Add Education
+          Add Work
         </Button>
       </Box>
     </>
   );
 };
 
-export default Education;
+export default Work;
