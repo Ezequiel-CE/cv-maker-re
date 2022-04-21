@@ -13,12 +13,12 @@ import WorkIcon from "@mui/icons-material/Work";
 import TabPanel from "./TabPanel";
 import { Link } from "react-router-dom";
 
-const a11yProps = (index) => {
-  return {
-    id: `tab-${index}`,
-    "aria-controls": `tabpanel-${index}`,
-  };
-};
+// const a11yProps = (index) => {
+//   return {
+//     id: `tab-${index}`,
+//     "aria-controls": `tabpanel-${index}`,
+//   };
+// };
 
 const Main = () => {
   const [value, setValue] = useState(0);
@@ -60,9 +60,6 @@ const Main = () => {
           <Work />
         </TabPanel>
 
-        {/* <PersonalForm />
-        <Education />
-        <Work />
         <Box textAlign="center" sx={{ padding: "0 0 40px 0" }}>
           <Button
             component={Link}
@@ -72,7 +69,7 @@ const Main = () => {
           >
             Preview
           </Button>
-        </Box> */}
+        </Box>
       </Container>
     </>
   );

@@ -3,16 +3,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import DataContext from "../../../store/data-context";
 
-const initialState = {
-  firstName: "",
-  lastName: "",
-  profession: "",
-  address: "",
-  phoneNumber: "",
-  email: "",
-  description: "",
-};
-
 const inputReducer = (state, action) => {
   if (action.type === "FIRSTNAME INPUT") {
     return { ...state, firstName: action.value };
@@ -40,13 +30,13 @@ const inputReducer = (state, action) => {
 };
 
 const PersonalForm = () => {
+  const { personalInfo, addPersonalData } = useContext(DataContext);
+
   //reducer to control the inputs state
   const [personalState, dispatchInputs] = useReducer(
     inputReducer,
-    initialState
+    personalInfo
   );
-
-  const { addPersonalData } = useContext(DataContext);
 
   useEffect(() => {
     addPersonalData(personalState);

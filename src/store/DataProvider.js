@@ -3,10 +3,18 @@ import DataContext from "./data-context";
 import uniqid from "uniqid";
 
 const initialDataState = {
-  personalInfo: {},
+  personalInfo: {
+    firstName: "",
+    lastName: "",
+    profession: "",
+    address: "",
+    phoneNumber: "",
+    email: "",
+    description: "",
+  },
   educationInfo: [
     {
-      name: "",
+      universityName: "utn",
       city: "",
       degree: "",
       subject: "",

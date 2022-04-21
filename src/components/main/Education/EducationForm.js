@@ -5,15 +5,6 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
 
-const initialState = {
-  universityName: "",
-  city: "",
-  degree: "",
-  subject: "",
-  from: "",
-  to: "",
-};
-
 const educationReducer = (state, action) => {
   if (action.type === "UNIVERSITYNAME INPUT") {
     return { ...state, universityName: action.value };
@@ -37,14 +28,15 @@ const educationReducer = (state, action) => {
   return state;
 };
 
-const EducationForm = ({ data }) => {
+const EducationForm = ({ educationData }) => {
+  //use the context provider to initialize the state
   const [educationState, dispatchEducationAction] = useReducer(
     educationReducer,
-    initialState
+    educationData
   );
   const { deleteEducationData, updateEducationData } = useContext(DataContext);
 
-  const { id } = data;
+  const { id } = educationData;
 
   useEffect(() => {
     updateEducationData(id, educationState);
@@ -89,7 +81,7 @@ const EducationForm = ({ data }) => {
           fullWidth={true}
           margin="dense"
           onChange={universityNameHandler}
-          value={educationState.universityName}
+          value={educationData.universityName}
         />
         <TextField
           id="outlined-basic"
@@ -99,7 +91,7 @@ const EducationForm = ({ data }) => {
           sx={{ backgroundColor: "white" }}
           margin="dense"
           onChange={cityHandler}
-          value={educationState.city}
+          value={educationData.city}
         />
         <TextField
           id="outlined-basic"
@@ -109,7 +101,7 @@ const EducationForm = ({ data }) => {
           sx={{ backgroundColor: "white" }}
           margin="dense"
           onChange={degreeHandler}
-          value={educationState.degree}
+          value={educationData.degree}
         />
         <TextField
           id="outlined-basic"
@@ -119,7 +111,7 @@ const EducationForm = ({ data }) => {
           fullWidth={true}
           margin="dense"
           onChange={subjectHandler}
-          value={educationState.subject}
+          value={educationData.subject}
         />
         <TextField
           id="outlined-basic"
@@ -129,7 +121,7 @@ const EducationForm = ({ data }) => {
           fullWidth={true}
           margin="dense"
           onChange={fromHandler}
-          value={educationState.from}
+          value={educationData.from}
         />
         <TextField
           id="outlined-basic"
@@ -139,14 +131,14 @@ const EducationForm = ({ data }) => {
           fullWidth={true}
           margin="dense"
           onChange={toHandler}
-          value={educationState.to}
+          value={educationData.to}
         />
       </form>
       <Box textAlign="end" sx={{ padding: "10px 0 20px 0" }}>
         <Button
           variant="outlined"
           startIcon={<DeleteIcon />}
-          onClick={() => deleteEducationData(data.id)}
+          onClick={() => deleteEducationData(educationData.id)}
         >
           Delete
         </Button>

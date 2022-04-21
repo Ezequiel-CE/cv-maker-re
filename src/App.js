@@ -4,7 +4,7 @@ import DataProvider from "./store/DataProvider";
 
 import Preview from "./components/views/Preview";
 
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (

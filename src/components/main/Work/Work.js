@@ -15,7 +15,7 @@ const Work = () => {
         Work Information
       </Typography>
       {workInfo.map((workData) => (
-        <WorkForm key={workData.id} data={workData} />
+        <WorkForm key={workData.id} workData={workData} />
       ))}
       <Box textAlign="center" sx={{ padding: "10px 0 20px 0" }}>
         <Button

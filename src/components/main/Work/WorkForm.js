@@ -5,8 +5,6 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
 
-const initialState = { position: "", company: "", city: "", from: "", to: "" };
-
 const workReducer = (state, action) => {
   if (action.type === "POSITION INPUT") {
     return { ...state, position: action.value };
@@ -27,11 +25,11 @@ const workReducer = (state, action) => {
   return state;
 };
 
-const WorkForm = ({ data }) => {
-  const [workState, dispatchWorkAction] = useReducer(workReducer, initialState);
+const WorkForm = ({ workData }) => {
+  const [workState, dispatchWorkAction] = useReducer(workReducer, workData);
   const { deleteWorkData, updateWorkData } = useContext(DataContext);
 
-  const { id } = data;
+  const { id } = workData;
   useEffect(() => {
     updateWorkData(id, workState);
   }, [workState, updateWorkData, id]);
@@ -110,7 +108,7 @@ const WorkForm = ({ data }) => {
         <Button
           variant="outlined"
           startIcon={<DeleteIcon />}
-          onClick={() => deleteWorkData(data.id)}
+          onClick={() => deleteWorkData(workData.id)}
         >
           Delete
         </Button>

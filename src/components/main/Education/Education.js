@@ -15,7 +15,7 @@ const Education = () => {
         Education Information
       </Typography>
       {educationInfo.map((eduData) => (
-        <EducationForm key={eduData.id} data={eduData} />
+        <EducationForm key={eduData.id} educationData={eduData} />
       ))}
       <Box textAlign="center" sx={{ padding: "10px 0 20px 0" }}>
         <Button
