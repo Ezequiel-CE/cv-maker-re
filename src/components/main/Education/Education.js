@@ -11,7 +11,7 @@ const Education = () => {
 
   return (
     <>
-      <Typography variant="h3" sx={{ padding: "50px 0 20px 0" }}>
+      <Typography variant="h3" sx={{ padding: "20px 0 20px 0" }}>
         Education Information
       </Typography>
       {educationInfo.map((eduData) => (

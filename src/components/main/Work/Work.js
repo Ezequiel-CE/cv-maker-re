@@ -11,7 +11,7 @@ const Work = () => {
 
   return (
     <>
-      <Typography variant="h3" sx={{ padding: "0 0 20px 0" }}>
+      <Typography variant="h3" sx={{ padding: "20px 0 20px 0" }}>
         Work Information
       </Typography>
       {workInfo.map((workData) => (
