@@ -14,7 +14,7 @@ const initialDataState = {
   },
   educationInfo: [
     {
-      universityName: "utn",
+      universityName: "",
       city: "",
       degree: "",
       subject: "",
@@ -36,9 +36,14 @@ const initialDataState = {
 };
 
 const dataReducer = (state, action) => {
-  if (action.type === "ADD PERSONAL DATA") {
-    return { ...state, personalInfo: action.value };
+  if (action.type === "UPDATE PERSONAL DATA") {
+    const updatedPersonalInfo = {
+      ...state.personalInfo,
+      [action.field]: action.value,
+    };
+    return { ...state, personalInfo: updatedPersonalInfo };
   }
+
   //EDUCATION
   if (action.type === "ADD NEW EDUCATION DATA") {
     const newEducationInfo = [...state.educationInfo, action.value];
@@ -54,12 +59,16 @@ const dataReducer = (state, action) => {
   }
 
   if (action.type === "UPDATE EDUCATION DATA") {
-    const formIndex = state.educationInfo.findIndex(
-      (dataEdu) => dataEdu.id === action.value.id
+    const educationFormIndex = state.educationInfo.findIndex(
+      (dataEdu) => dataEdu.id === action.id
     );
-    const newEducationInfo = [...state.educationInfo];
-    newEducationInfo[formIndex] = action.value;
-    return { ...state, educationInfo: newEducationInfo };
+    //change the object
+    const updatedEducationInfo = state.educationInfo[educationFormIndex];
+    updatedEducationInfo[action.field] = action.value;
+    //add the object to a copy and replace state
+    const newEducationData = [...state.educationInfo];
+    newEducationData[educationFormIndex] = updatedEducationInfo;
+    return { ...state, educationInfo: newEducationData };
   }
 
   //WORK
@@ -98,13 +107,15 @@ const DataProvider = ({ children }) => {
   //FUNCIONES
 
   //PERSONAL
-  //useCallback recuerda la funcion para evitar el renderizado del componente que la utilize
-  const addPersonalDataHandler = useCallback(
-    (data) => {
-      dispatchDataAction({ type: "ADD PERSONAL DATA", value: data });
-    },
-    [dispatchDataAction]
-  );
+
+  const updatePersonalDataHandler = (e) => {
+    const { name, value } = e.target;
+    dispatchDataAction({
+      type: "UPDATE PERSONAL DATA",
+      field: name,
+      value,
+    });
+  };
 
   //EDUCATION
   const addNewEducationDataHandler = () => {
@@ -126,16 +137,16 @@ const DataProvider = ({ children }) => {
     dispatchDataAction({ type: "DELETE EDUCATION ITEM", value: id });
   };
 
-  const updateEducationHandler = useCallback(
-    (id, data) => {
-      const updateDataedu = { ...data, id: id };
-      dispatchDataAction({
-        type: "UPDATE EDUCATION DATA",
-        value: updateDataedu,
-      });
-    },
-    [dispatchDataAction]
-  );
+  const updateEducationInfoHandler = (e, id) => {
+    const { name, value } = e.target;
+
+    dispatchDataAction({
+      type: "UPDATE EDUCATION DATA",
+      field: name,
+      value,
+      id,
+    });
+  };
 
   //WORK
 
@@ -168,20 +179,20 @@ const DataProvider = ({ children }) => {
     [dispatchDataAction]
   );
 
-  const dataContext = {
+  const contextValue = {
     personalInfo: dataState.personalInfo,
     educationInfo: dataState.educationInfo,
     workInfo: dataState.workInfo,
-    addPersonalData: addPersonalDataHandler,
+    updatePersonalInfo: updatePersonalDataHandler,
     addNewEducationData: addNewEducationDataHandler,
     deleteEducationData: deleteEducationHandler,
-    updateEducationData: updateEducationHandler,
+    updateEducationInfo: updateEducationInfoHandler,
     addNewWorkData: addNewWorkDataHandler,
     deleteWorkData: deleteWorkDataHandler,
     updateWorkData: updateWorkHandler,
   };
   return (
-    <DataContext.Provider value={dataContext}>{children}</DataContext.Provider>
+    <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>
   );
 };
 
