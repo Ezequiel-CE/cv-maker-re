@@ -1,8 +1,7 @@
 import Main from "./components/views/mainView/Main";
 import Navbar from "./components/NavBar";
 import DataProvider from "./store/DataProvider";
-
-import Preview from "./components/views/Preview";
+import Preview from "./components/views/PreviewView/Preview";
 
 import { Routes, Route } from "react-router-dom";
 
