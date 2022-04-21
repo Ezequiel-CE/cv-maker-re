@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from "react";
+import React, { useReducer } from "react";
 import DataContext from "./data-context";
 import uniqid from "uniqid";
 
@@ -78,7 +78,7 @@ const dataReducer = (state, action) => {
     return { ...state, workInfo: newWork };
   }
 
-  if (action.type === "DELETE WORK ITEM") {
+  if (action.type === "DELETE WORK DATA") {
     const newWorkState = state.workInfo.filter(
       (form) => form.id !== action.value
     );
@@ -87,12 +87,16 @@ const dataReducer = (state, action) => {
   }
 
   if (action.type === "UPDATE WORK DATA") {
-    const formIndex = state.workInfo.findIndex(
-      (dataWork) => dataWork.id === action.value.id
+    const workFormIndex = state.workInfo.findIndex(
+      (dataWork) => dataWork.id === action.id
     );
-    const newWorkInfo = [...state.workInfo];
-    newWorkInfo[formIndex] = action.value;
-    return { ...state, workInfo: newWorkInfo };
+    //change the object
+    const updatedWorkInfo = state.workInfo[workFormIndex];
+    updatedWorkInfo[action.field] = action.value;
+    //add the object to a copy and replace state
+    const newWorkData = [...state.workInfo];
+    newWorkData[workFormIndex] = updatedWorkInfo;
+    return { ...state, workInfo: newWorkData };
   }
 
   return state;
@@ -165,19 +169,19 @@ const DataProvider = ({ children }) => {
   };
 
   const deleteWorkDataHandler = (id) => {
-    dispatchDataAction({ type: "DELETE WORK ITEM", value: id });
+    dispatchDataAction({ type: "DELETE WORK DATA", value: id });
   };
 
-  const updateWorkHandler = useCallback(
-    (id, data) => {
-      const updatedWorkedu = { ...data, id: id };
-      dispatchDataAction({
-        type: "UPDATE WORK DATA",
-        value: updatedWorkedu,
-      });
-    },
-    [dispatchDataAction]
-  );
+  const updateWorkInfoHandler = (e, id) => {
+    const { name, value } = e.target;
+
+    dispatchDataAction({
+      type: "UPDATE WORK DATA",
+      field: name,
+      value,
+      id,
+    });
+  };
 
   const contextValue = {
     personalInfo: dataState.personalInfo,
@@ -189,7 +193,7 @@ const DataProvider = ({ children }) => {
     updateEducationInfo: updateEducationInfoHandler,
     addNewWorkData: addNewWorkDataHandler,
     deleteWorkData: deleteWorkDataHandler,
-    updateWorkData: updateWorkHandler,
+    updateWorkInfo: updateWorkInfoHandler,
   };
   return (
     <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>

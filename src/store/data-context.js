@@ -10,7 +10,7 @@ const DataContext = React.createContext({
   updateEducationInfo: (event, id) => {},
   addNewWorkData: () => {},
   deleteWorkData: (id) => {},
-  updateWorkData: (id, data) => {},
+  updateWorkInfo: (event, id) => {},
 });
 
 export default DataContext;
