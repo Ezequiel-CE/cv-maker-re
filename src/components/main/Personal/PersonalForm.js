@@ -2,9 +2,16 @@ import React, { useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import DataContext from "../../../store/data-context";
+import Stack from "@mui/material/Stack";
+import Chip from "@mui/material/Chip";
 
 const PersonalForm = () => {
-  const { personalInfo, updatePersonalInfo } = useContext(DataContext);
+  const {
+    personalInfo,
+    updatePersonalInfo,
+    addPersonalSkill,
+    deletePersonalSkill,
+  } = useContext(DataContext);
 
   return (
     <>
@@ -78,6 +85,7 @@ const PersonalForm = () => {
           onChange={updatePersonalInfo}
           value={personalInfo.email}
         />
+
         <TextField
           name="description"
           id="outlined-basic"
@@ -91,6 +99,31 @@ const PersonalForm = () => {
           onChange={updatePersonalInfo}
           value={personalInfo.description}
         />
+        <TextField
+          name="skills"
+          id="outlined-basic"
+          label="Skills"
+          variant="outlined"
+          sx={{ backgroundColor: "white", marginBottom: "10px" }}
+          fullWidth={true}
+          margin="dense"
+          onKeyDown={addPersonalSkill}
+        />
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ display: "flex", flexWrap: "wrap" }}
+        >
+          {personalInfo.skills.map((skill) => (
+            <Chip
+              key={skill.id}
+              label={skill.item}
+              variant="outlined"
+              onDelete={() => deletePersonalSkill(skill.id)}
+              sx={{ backgroundColor: "white" }}
+            />
+          ))}
+        </Stack>
       </form>
     </>
   );

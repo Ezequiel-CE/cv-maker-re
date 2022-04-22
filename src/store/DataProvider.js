@@ -4,13 +4,21 @@ import uniqid from "uniqid";
 
 const initialDataState = {
   personalInfo: {
-    firstName: "",
-    lastName: "",
-    profession: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
-    description: "",
+    firstName: "Carlos Ezequiel",
+    lastName: "Carrizo Escudero",
+    profession: "Developer",
+    address: "Proyectada 2,La rioja",
+    phoneNumber: "3804561344",
+    email: "ezequielce490@gmail.com",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    skills: [
+      { item: "python", id: uniqid() },
+      { item: "git", id: uniqid() },
+      { item: "JavaScript", id: uniqid() },
+      { item: "Node", id: uniqid() },
+      { item: "React JS", id: uniqid() },
+    ],
   },
   educationInfo: [
     {
@@ -40,6 +48,24 @@ const dataReducer = (state, action) => {
     const updatedPersonalInfo = {
       ...state.personalInfo,
       [action.field]: action.value,
+    };
+    return { ...state, personalInfo: updatedPersonalInfo };
+  }
+
+  if (action.type === "ADD SKILL ITEM") {
+    const updatedPersonalInfo = {
+      ...state.personalInfo,
+      skills: [...state.personalInfo.skills, action.value],
+    };
+    return { ...state, personalInfo: updatedPersonalInfo };
+  }
+
+  if (action.type === "DELETE SKILL ITEM") {
+    const updatedPersonalInfo = {
+      ...state.personalInfo,
+      skills: state.personalInfo.skills.filter(
+        (skill) => skill.id !== action.id
+      ),
     };
     return { ...state, personalInfo: updatedPersonalInfo };
   }
@@ -121,6 +147,20 @@ const DataProvider = ({ children }) => {
     });
   };
 
+  const updateSkillHandler = (e) => {
+    if (e.key === "Enter") {
+      dispatchDataAction({
+        type: "ADD SKILL ITEM",
+        value: { item: e.target.value, id: uniqid() },
+      });
+      e.target.value = "";
+    }
+  };
+
+  const deleteSkillHandler = (id) => {
+    dispatchDataAction({ type: "DELETE SKILL ITEM", id: id });
+  };
+
   //EDUCATION
   const addNewEducationDataHandler = () => {
     dispatchDataAction({
@@ -188,6 +228,8 @@ const DataProvider = ({ children }) => {
     educationInfo: dataState.educationInfo,
     workInfo: dataState.workInfo,
     updatePersonalInfo: updatePersonalDataHandler,
+    addPersonalSkill: updateSkillHandler,
+    deletePersonalSkill: deleteSkillHandler,
     addNewEducationData: addNewEducationDataHandler,
     deleteEducationData: deleteEducationHandler,
     updateEducationInfo: updateEducationInfoHandler,
