@@ -7,14 +7,14 @@ const initialDataState = {
     firstName: "Carlos Ezequiel",
     lastName: "Carrizo Escudero",
     profession: "Developer",
-    address: "Proyectada 2,La rioja",
+    address: "Proyectada 2,La rioja. Argentina",
     phoneNumber: "3804561344",
     email: "ezequielce490@gmail.com",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     skills: [
-      { item: "python", id: uniqid() },
-      { item: "git", id: uniqid() },
+      { item: "Python", id: uniqid() },
+      { item: "Git", id: uniqid() },
       { item: "JavaScript", id: uniqid() },
       { item: "Node", id: uniqid() },
       { item: "React JS", id: uniqid() },

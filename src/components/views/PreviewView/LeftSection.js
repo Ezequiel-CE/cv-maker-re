@@ -23,9 +23,19 @@ const LeftSection = ({ data }) => {
         <Text style={style.about_title}>SKILLS</Text>
         <View style={style.skill_list}>
           {data.skills.map((skill) => (
-            <Text key={skill.id}>{skill.item}</Text>
+            <Text key={skill.id}>
+              {" "}
+              <View style={{ fontSize: "15px" }}>.</View> {skill.item}
+            </Text>
           ))}
         </View>
+      </View>
+      <View style={style.profile_line} />
+      <View style={style.about_container}>
+        <Text style={style.about_title}>CONTACT INFO</Text>
+        <Text style={style.about_text}>Address: {data.address}</Text>
+        <Text style={style.about_text}>Phone Number: {data.phoneNumber}</Text>
+        <Text style={style.about_text}>E-mail: {data.email}</Text>
       </View>
     </View>
   );

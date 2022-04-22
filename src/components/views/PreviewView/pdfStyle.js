@@ -16,7 +16,7 @@ const style = StyleSheet.create({
     width: "35%",
     height: "100%",
     backgroundColor: "#084c41",
-    padding: "20px",
+    padding: "50px 20px 20px 20px",
   },
   profile_container: {
     display: "flex",
