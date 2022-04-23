@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import { PDFViewer } from "@react-pdf/renderer";
 import MyDocument from "./MyDocument";
@@ -9,6 +9,19 @@ import DataContext from "../../../store/data-context";
 
 const Preview = () => {
   const { personalInfo, educationInfo, workInfo } = useContext(DataContext);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleRezise = () => {
+      const windowWidth = window.innerWidth;
+      setWidth(windowWidth);
+    };
+    window.addEventListener("resize", handleRezise);
+
+    return () => {
+      window.removeEventListener("resize", handleRezise);
+    };
+  }, []);
 
   return (
     <>
@@ -19,11 +32,17 @@ const Preview = () => {
           marginTop: "50px",
           marginBottom: "50px",
           borderRadius: "10px",
-          height: "100vh",
+          height: width > 600 ? "129.5vh" : "60vh",
           textAlign: "center",
         }}
       >
-        <PDFViewer showToolbar={false} width="71%" height="100%">
+        <PDFViewer
+          showToolbar={false}
+          style={{
+            width: width > 600 ? "70.5%" : "100%",
+            height: "100%",
+          }}
+        >
           <MyDocument
             personalInfo={personalInfo}
             educationInfo={educationInfo}
