@@ -6,12 +6,8 @@ const style = StyleSheet.create({
     flexDirection: "row",
     fontFamily: "Helvetica-Bold",
   },
-  section_right: {
-    margin: 10,
-    padding: 10,
-    paddingTop: 20,
-    width: "65%",
-  },
+
+  //left section
   section_left: {
     width: "35%",
     height: "100%",
@@ -72,6 +68,52 @@ const style = StyleSheet.create({
     backgroundColor: "#FFF",
     textAlign: "center",
   },
+  //right section
+  section_right: {
+    padding: 30,
+    paddingTop: 20,
+    width: "65%",
+    height: "100%",
+  },
+  education_section: {
+    padding: "50px 50px 50px 0px",
+  },
+  eduWork_title: { fontSize: "20px" },
+  eduWork_line: {
+    margin: "20px auto",
+    width: "100%",
+    height: "3px",
+    backgroundColor: "#084c41",
+    textAlign: "center",
+  },
+  academic_item: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    margin: "0 0 20px 0",
+  },
+  academic_title: {
+    fontSize: "13px",
+    margin: "0 0 5px 0",
+    textAlign: "left",
+    fontWeight: "light",
+  },
+  academic_text: { fontSize: "10px" },
+  academic_subsection: {
+    display: "flex",
+    width: "100%",
+    flexDirection: "row",
+    margin: "5px 0 0 0",
+  },
+  academic_subtext: {
+    display: "flex",
+    justifyContent: "flex-end",
+    fontSize: "10px",
+  },
+  work_section: {
+    padding: "20px 50px 50px 0px",
+  },
+  work_description: { fontSize: "9px", margin: "5px 0 0 0" },
 });
 
 export default style;

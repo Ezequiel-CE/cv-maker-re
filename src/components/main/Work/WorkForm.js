@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 const WorkForm = ({ workData }) => {
   const { deleteWorkData, updateWorkInfo } = useContext(DataContext);
 
-  const { position, company, city, from, to, id } = workData;
+  const { position, company, city, from, to, id, description } = workData;
 
   return (
     <>
@@ -23,6 +23,17 @@ const WorkForm = ({ workData }) => {
           margin="dense"
           onChange={(e) => updateWorkInfo(e, id)}
           value={position}
+        />
+        <TextField
+          name="description"
+          id="outlined-basic"
+          label="Description"
+          variant="outlined"
+          sx={{ backgroundColor: "white" }}
+          fullWidth={true}
+          margin="dense"
+          onChange={(e) => updateWorkInfo(e, id)}
+          value={description}
         />
         <TextField
           name="company"

@@ -14,28 +14,6 @@ const EducationForm = ({ educationData }) => {
     <>
       <form>
         <TextField
-          name="universityName"
-          id="outlined-basic"
-          label="University name"
-          variant="outlined"
-          sx={{ backgroundColor: "white" }}
-          fullWidth={true}
-          margin="dense"
-          onChange={(e) => updateEducationInfo(e, id)}
-          value={universityName}
-        />
-        <TextField
-          name="city"
-          id="outlined-basic"
-          label="City"
-          variant="outlined"
-          fullWidth={true}
-          sx={{ backgroundColor: "white" }}
-          margin="dense"
-          onChange={(e) => updateEducationInfo(e, id)}
-          value={city}
-        />
-        <TextField
           name="degree"
           id="outlined-basic"
           label="Degree"
@@ -56,6 +34,28 @@ const EducationForm = ({ educationData }) => {
           margin="dense"
           onChange={(e) => updateEducationInfo(e, id)}
           value={subject}
+        />
+        <TextField
+          name="universityName"
+          id="outlined-basic"
+          label="University name"
+          variant="outlined"
+          sx={{ backgroundColor: "white" }}
+          fullWidth={true}
+          margin="dense"
+          onChange={(e) => updateEducationInfo(e, id)}
+          value={universityName}
+        />
+        <TextField
+          name="city"
+          id="outlined-basic"
+          label="City"
+          variant="outlined"
+          fullWidth={true}
+          sx={{ backgroundColor: "white" }}
+          margin="dense"
+          onChange={(e) => updateEducationInfo(e, id)}
+          value={city}
         />
         <TextField
           name="from"

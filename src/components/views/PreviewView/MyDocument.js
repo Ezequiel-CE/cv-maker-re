@@ -1,6 +1,7 @@
 import React from "react";
-import { Page, Text, View, Document } from "@react-pdf/renderer";
+import { Page, Document } from "@react-pdf/renderer";
 import LeftSection from "./LeftSection";
+import RightSection from "./RightSection";
 import style from "./pdfStyle";
 
 // Create Document Component
@@ -9,9 +10,7 @@ const MyDocument = ({ personalInfo, educationInfo, workInfo }) => {
     <Document>
       <Page size="A4" style={style.page}>
         <LeftSection data={personalInfo} />
-        <View>
-          <Text>Section #2</Text>
-        </View>
+        <RightSection educationData={educationInfo} workData={workInfo} />
       </Page>
     </Document>
   );
