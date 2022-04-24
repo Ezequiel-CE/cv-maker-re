@@ -58,6 +58,7 @@ const Preview = () => {
               <Document
                 file={url}
                 loading={<CircularProgress />}
+                noData={<CircularProgress />}
                 className="center"
               >
                 <Page pageNumber={1} width={width > 786 ? 810 : 350} />
