@@ -4,64 +4,17 @@ import uniqid from "uniqid";
 
 const initialDataState = {
   personalInfo: {
-    firstName: "Carlos Ezequiel",
-    lastName: "Carrizo Escudero",
-    profession: "Developer",
-    address: "Proyectada 2,La rioja. Argentina",
-    phoneNumber: "3804561344",
-    email: "ezequielce490@gmail.com",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    skills: [
-      { item: "Python", id: uniqid() },
-      { item: "Git", id: uniqid() },
-      { item: "JavaScript", id: uniqid() },
-      { item: "Node", id: uniqid() },
-      { item: "React JS", id: uniqid() },
-    ],
+    firstName: "",
+    lastName: "",
+    profession: "",
+    address: "",
+    phoneNumber: "",
+    email: "",
+    description: "",
+    skills: [],
   },
-  educationInfo: [
-    {
-      universityName: "UTN - UNIVERSIDAD TECNOLOGICA NACIONAL",
-      city: "LA RIOJA",
-      degree: "Tecnicatura Universitaria en Programación",
-      subject: "Informatica",
-      from: "2021",
-      to: "ACTUAL",
-      id: uniqid(),
-    },
-    {
-      universityName: "UTN - UNIVERSIDAD TECNOLOGICA NACIONAL",
-      city: "LA RIOJA",
-      degree: "Tecnicatura Universitaria en Higiene y Seguridad en el Trabajo",
-      subject: "Seguridad",
-      from: "2016",
-      to: "2018",
-      id: uniqid(),
-    },
-  ],
-  workInfo: [
-    {
-      position: "Inspector de Higiene y Seguridad",
-      description:
-        "Realizar inspecciones de HyS en empresa y obras de construccion",
-      company: "Secretaria de Trabajo",
-      city: "La Rioja",
-      from: "2020",
-      to: "2022",
-      id: uniqid(),
-    },
-    {
-      position: "Repositor de Supermercado",
-      description:
-        "Realizar el reabastecimiento de las gondolas del supermercado",
-      company: "Supermercado Mayor",
-      city: "La Rioja",
-      from: "2018",
-      to: "2020",
-      id: uniqid(),
-    },
-  ],
+  educationInfo: [],
+  workInfo: [],
 };
 
 const dataReducer = (state, action) => {
