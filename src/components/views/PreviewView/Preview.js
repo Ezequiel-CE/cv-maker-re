@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import DataContext from "../../../store/data-context";
 import { Document, Page } from "react-pdf";
-import { usePDF, PDFDownloadLink } from "@react-pdf/renderer";
+import { usePDF } from "@react-pdf/renderer";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./Preview.css";
 //fix for the pdf
@@ -38,6 +38,9 @@ const Preview = () => {
       />
     ),
   });
+  if (instance.error) {
+    updateInstance();
+  }
 
   return (
     <>
