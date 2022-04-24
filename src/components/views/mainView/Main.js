@@ -12,6 +12,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import WorkIcon from "@mui/icons-material/Work";
 import TabPanel from "./TabPanel";
 import { Link } from "react-router-dom";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const Main = () => {
   const [value, setValue] = useState(0);
@@ -24,7 +25,7 @@ const Main = () => {
       <Container
         sx={{
           bgcolor: "#EEEEEE",
-          padding: "50px",
+          padding: "20px 0",
           marginTop: "50px",
           marginBottom: "50px",
           borderRadius: "10px",
@@ -52,18 +53,18 @@ const Main = () => {
         <TabPanel value={value} index={2}>
           <Work />
         </TabPanel>
-
-        <Box textAlign="center" sx={{ padding: "0 0 40px 0" }}>
-          <Button
-            component={Link}
-            to="/preview"
-            variant="contained"
-            sx={{ fontSize: "30px" }}
-          >
-            Preview
-          </Button>
-        </Box>
       </Container>
+      <Box textAlign="center" sx={{ padding: "0 0 40px 0" }}>
+        <Button
+          component={Link}
+          to="/preview"
+          variant="contained"
+          sx={{ fontSize: "18px", padding: "5px 16px", borderRadius: "20px" }}
+          endIcon={<ArrowForwardIosIcon />}
+        >
+          Preview
+        </Button>
+      </Box>
     </>
   );
 };

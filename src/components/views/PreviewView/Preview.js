@@ -6,8 +6,10 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import DataContext from "../../../store/data-context";
 import { Document, Page } from "react-pdf";
-import { BlobProvider } from "@react-pdf/renderer";
+import { BlobProvider, PDFDownloadLink } from "@react-pdf/renderer";
 import CircularProgress from "@mui/material/CircularProgress";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import "./Preview.css";
 //fix for the pdf
 import { pdfjs } from "react-pdf";
@@ -42,7 +44,7 @@ const Preview = () => {
       <Container
         sx={{
           bgcolor: "#EEEEEE",
-          padding: "10px 0",
+          padding: "40px 0",
           marginTop: "50px",
           marginBottom: "50px",
           borderRadius: "10px",
@@ -67,15 +69,35 @@ const Preview = () => {
           }}
         </BlobProvider>
       </Container>
-      <Box textAlign="center" sx={{ padding: "0 0 40px 0" }}>
+      <Box
+        sx={{
+          padding: "0 0 40px 0",
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
         <Button
           component={Link}
           to="/"
           variant="contained"
-          sx={{ fontSize: "30px" }}
+          sx={{ fontSize: "18px", padding: "5px 16px", borderRadius: "20px" }}
+          startIcon={<ArrowBackIosNewIcon />}
         >
-          Continue editing
+          editing
         </Button>
+        <PDFDownloadLink
+          document={pdf}
+          fileName="Curriculum.pdf"
+          style={{ textDecoration: "none" }}
+        >
+          <Button
+            variant="contained"
+            sx={{ fontSize: "18px", padding: "5px 16px", borderRadius: "20px" }}
+            endIcon={<ArrowDownwardIcon />}
+          >
+            Download
+          </Button>
+        </PDFDownloadLink>
       </Box>
     </>
   );
