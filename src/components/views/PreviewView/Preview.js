@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import DataContext from "../../../store/data-context";
 import { Document, Page } from "react-pdf";
-import { usePDF } from "@react-pdf/renderer";
+import { BlobProvider } from "@react-pdf/renderer";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./Preview.css";
 //fix for the pdf
@@ -29,40 +29,42 @@ const Preview = () => {
     };
   }, []);
 
-  const [instance, updateInstance] = usePDF({
-    document: (
-      <MyDocument
-        personalInfo={personalInfo}
-        educationInfo={educationInfo}
-        workInfo={workInfo}
-      />
-    ),
-  });
-  if (instance.error) {
-    updateInstance();
-  }
+  const pdf = (
+    <MyDocument
+      personalInfo={personalInfo}
+      educationInfo={educationInfo}
+      workInfo={workInfo}
+    />
+  );
 
   return (
     <>
       <Container
         sx={{
           bgcolor: "#EEEEEE",
-          padding: "50px",
+          padding: "10px 0",
           marginTop: "50px",
           marginBottom: "50px",
           borderRadius: "10px",
           textAlign: "center",
         }}
       >
-        {!instance.loading && (
-          <Document
-            file={instance.url}
-            loading={<CircularProgress />}
-            className="center"
-          >
-            <Page pageNumber={1} width={width > 786 ? 810 : 350} />
-          </Document>
-        )}
+        <BlobProvider document={pdf}>
+          {({ blob, url, loading, error }) => {
+            // blob load the data but dont show the pdf
+            return loading ? (
+              <CircularProgress />
+            ) : (
+              <Document
+                file={url}
+                loading={<CircularProgress />}
+                className="center"
+              >
+                <Page pageNumber={1} width={width > 786 ? 810 : 350} />
+              </Document>
+            );
+          }}
+        </BlobProvider>
       </Container>
       <Box textAlign="center" sx={{ padding: "0 0 40px 0" }}>
         <Button
