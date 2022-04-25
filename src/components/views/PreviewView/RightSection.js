@@ -14,13 +14,15 @@ const RightSection = ({ educationData, workData }) => {
           <EducationItem key={dataWork.id} data={dataWork} />
         ))}
       </View>
-      <View style={style.work_section}>
-        <Text style={style.eduWork_title}>Work History</Text>
-        <View style={style.eduWork_line} />
-        {workData.map((dataWork) => (
-          <WorkItem key={dataWork.id} data={dataWork} />
-        ))}
-      </View>
+      {workData.length > 0 && (
+        <View style={style.work_section}>
+          <Text style={style.eduWork_title}>Work History</Text>
+          <View style={style.eduWork_line} />
+          {workData.map((dataWork) => (
+            <WorkItem key={dataWork.id} data={dataWork} />
+          ))}
+        </View>
+      )}
     </View>
   );
 };

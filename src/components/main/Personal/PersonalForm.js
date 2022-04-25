@@ -102,7 +102,7 @@ const PersonalForm = () => {
         <TextField
           name="skills"
           id="outlined-basic"
-          label="Skills"
+          label="Press enter to add Skills"
           variant="outlined"
           sx={{ backgroundColor: "white", marginBottom: "10px" }}
           fullWidth={true}
